@@ -3,7 +3,7 @@
 const logoutUser = new LogoutButton();
 logoutUser.action = () => ApiConnector.logout(response => response ? location.reload() : console.log(1));
 
-ApiConnector.current(response => response.success ? ProfileWidget.showProfile(response.data) : console.log('нет данных'));
+ApiConnector.current(response => response.success && ProfileWidget.showProfile(response.data));
 
 const showUserRates = new RatesBoard();
 function getNewRates() {
@@ -11,7 +11,6 @@ function getNewRates() {
         if (response.success) {
             showUserRates.clearTable();
             showUserRates.fillTable(response.data);
-            return
         }
     });
 };
@@ -28,7 +27,6 @@ userMoneyManager.addMoneyCallback = (data) => {
         } else {
             userMoneyManager.setMessage(!response.success, response.data)
         }
-        return
     })
 };
 userMoneyManager.conversionMoneyCallback = (data) => {
@@ -39,7 +37,6 @@ userMoneyManager.conversionMoneyCallback = (data) => {
         } else {
             userMoneyManager.setMessage(!response.success, response.data)
         }
-        return
     })
 };
 userMoneyManager.sendMoneyCallback = (data) => {
@@ -50,7 +47,6 @@ userMoneyManager.sendMoneyCallback = (data) => {
         } else {
             userMoneyManager.setMessage(!response.success, response.data)
         }
-        return
     })
 };
 
